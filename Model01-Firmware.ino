@@ -116,16 +116,16 @@ enum { QGMLW, NUMPAD, FUNCTION }; // layers
 KEYMAPS(
 
   [QGMLW] = KEYMAP_STACKED
-  (___,          Key_1, Key_2, Key_3, Key_4, Key_5, Key_LEDEffectNext,
-   Key_Backtick, Key_Q, Key_G, Key_M, Key_L, Key_W, Key_Tab,
-   Key_Semicolon,   Key_D, Key_S, Key_T, Key_N, Key_R,
+  (___,           Key_1, Key_2, Key_3, Key_4, Key_5, Key_LEDEffectNext,
+   Key_Backtick,  Key_Q, Key_G, Key_M, Key_L, Key_W, Key_Tab,
+   Key_Quote,     Key_D, Key_S, Key_T, Key_N, Key_R,
    Key_Backslash, Key_Z, Key_X, Key_C, Key_F, Key_J, Key_Escape,
    Key_LeftControl, Key_Backspace, Key_LeftGui, Key_LeftShift,
    ShiftToLayer(FUNCTION),
 
    Key_PageUp,    Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
    Key_Enter,     Key_B, Key_Y, Key_U,     Key_V,         Key_Equals,    ___,
-                  Key_I, Key_A, Key_E,     Key_O,         Key_H,         Key_Quote,
+                  Key_I, Key_A, Key_E,     Key_O,         Key_H,         Key_Semicolon,
    Key_PageDown,  Key_K, Key_P, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
    Key_RightShift, Key_RightAlt, Key_Spacebar, Key_RightControl,
    ShiftToLayer(FUNCTION)),
