@@ -26,7 +26,7 @@
 #include "Kaleidoscope-LEDControl.h"
 
 // Support for "Numpad" mode, which is mostly just the Numpad specific LED mode
-#include "Kaleidoscope-NumPad.h"
+#include "Kaleidoscope-Numlock.h"
 
 // Support for an "LED off mode"
 #include "LED-Off.h"
@@ -118,14 +118,14 @@ KEYMAPS(
   [QGMLW] = KEYMAP_STACKED
   (___,           Key_1, Key_2, Key_3, Key_4, Key_5, Key_LEDEffectNext,
    Key_Backtick,  Key_Q, Key_G, Key_M, Key_L, Key_W, Key_Tab,
-   Key_Quote,     Key_D, Key_S, Key_T, Key_N, Key_R,
+   Key_Equals,    Key_D, Key_S, Key_T, Key_N, Key_R,
    Key_Backslash, Key_Z, Key_X, Key_C, Key_F, Key_J, Key_Escape,
    Key_LeftControl, Key_Backspace, Key_LeftGui, Key_LeftShift,
    ShiftToLayer(FUNCTION),
 
    Key_PageUp,    Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
-   Key_Enter,     Key_B, Key_Y, Key_U,     Key_V,         Key_Equals,    ___,
-                  Key_I, Key_A, Key_E,     Key_O,         Key_H,         Key_Semicolon,
+   Key_Enter,     Key_B, Key_Y, Key_U,     Key_V,         Key_Semicolon, ___,
+                  Key_I, Key_A, Key_E,     Key_O,         Key_H,         Key_Quote,
    Key_PageDown,  Key_K, Key_P, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
    Key_RightShift, Key_RightAlt, Key_Spacebar, Key_RightControl,
    ShiftToLayer(FUNCTION)),
@@ -229,28 +229,21 @@ void hostPowerManagementEventHandler(kaleidoscope::HostPowerManagement::Event ev
   toggleLedsOnSuspendResume(event);
 }
 
-/** The 'setup' function is one of the two standard Arduino sketch functions.
-  * It's called when your keyboard first powers up. This is where you set up
-  * Kaleidoscope and any plugins.
-  */
-
-KALEIDOSCOPE_INIT_PLUGINS(
-  TestMode,
-  BootGreetingEffect,
-  LEDControl, LEDOff,
-  LEDRainbowWaveEffect, NumPad,
-  Macros,
-  MouseKeys,
-  HostPowerManagement
-);
-
 void setup() {
   // First, call Kaleidoscope's internal setup function
   Kaleidoscope.setup();
+  Kaleidoscope.use(&TestMode,
+                   &BootGreetingEffect,
+                   &LEDControl, &LEDOff,
+                   &LEDRainbowWaveEffect, &NumLock,
+                   &Macros,
+                   &MouseKeys,
+                   &HostPowerManagement,
+                   NULL);
 
   // While we hope to improve this in the future, the NumPad plugin
   // needs to be explicitly told which keymap layer is your numpad layer
-  NumPad.numPadLayer = NUMPAD;
+  NumLock.numPadLayer = NUMPAD;
 
   // We set the brightness of the rainbow effects to 150 (on a scale of 0-255)
   // This draws more than 500mA, but looks much nicer than a dimmer effect
